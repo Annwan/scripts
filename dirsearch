@@ -1,0 +1,8 @@
+#!/bin/sh
+DIR=$1
+QUERY=$2
+for FILE in $(/bin/ls "$DIR"*)
+do
+    echo "$FILE"
+    echo "$(/bin/grep "$QUERY" "$FILE")"
+done
