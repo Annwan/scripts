@@ -1,7 +1,7 @@
 #!/bin/sh
 DIR=$1
 QUERY=$2
-for FILE in $(/bin/ls "$DIR"*)
+for FILE in $(/bin/ls -pL "$DIR"*)
 do
     echo "$FILE"
     echo "$(/bin/grep "$QUERY" "$FILE")"
