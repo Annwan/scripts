@@ -1,0 +1,24 @@
+#!/bin/sh
+
+######################################################################
+# prettyman                                                          #
+# Script by: Annwan                                                  #
+######################################################################
+# Dependencies:                                                      #
+#  - dmenu                                                           #
+#  - zathura                                                         #
+######################################################################
+# Description:                                                       #
+# prettyman is a simple wrapper script for man to display manpages   #
+# as pdf, to make them more readable, and to allow to print them.    #
+######################################################################
+
+TEMP_FILE=$(mktemp /tmp/man.XXXXXXXXXXXX.pdf)
+
+PAGE=$(apropos . | dmenu -l 30 | awk '{print $1}')
+
+man -Tps $PAGE | ps2pdf - $TEMP_FILE
+
+zathura $TEMP_FILE
+
+rm -r -f $TEMP_FILE
