@@ -1,18 +1,28 @@
 #!/bin/sh
+
+######################################################################
+# rsslookup                                                          #
+# Script by: Annwan                                                  #
+######################################################################
+# Dependencies:                                                      #
+#  - rsstail                                                         #
+######################################################################
+# Description:                                                       #
+# rsslookup is the script I use to manage my different rss feeds and #
+# youtube non-subscriptions (letting me not having to use a Google   #
+# account). Just add yours below                                     #
+######################################################################
+
 ytfeedc="https://www.youtube.com/feeds/videos.xml?channel_id="
 ytfeedu="https://www.youtube.com/feeds/videos.xml?user="
 
 args=" -pa -n 1 -i 3" #show date and author, start with only one item, refresh every 30 s
-args="$args -u https://xkcd.com/atom.xml" # XKCD
-args="$args -u ${ytfeedc}UCYO_jab_esuFRV4b17AJtAw" #3Blue1Brown
-args="$args -u ${ytfeedc}UC5X4e8ScZI2AFd_vkjSoyoQ" #Astronogeek
-args="$args -u ${ytfeedc}UC-yuWVUplUJZvieEligKBkA" #Javidx9
-args="$args -u ${ytfeedc}UCFu1JGHZe8gpT6pdmfBK2mA" #Phifoux13
-args="$args -u ${ytfeedc}UCncTjqw75krp9j_wRRh5Gvw" #Worldbuilding notes
-args="$args -u ${ytfeedc}UChFur_NwVSbUozOcF_F2kMg" #Mumbojumbo
-args="$args -u ${ytfeedc}UCR9Gcq0CMm6YgTzsDxAxjOQ" #Grian
-args="$args -u ${ytfeedc}UCZ9x-z3iOnIbJxVpm1rsu2A" #Iskall85
-args="$args -u ${ytfeedc}UCcXhhVwCT6_WqjkEniejRJQ" #Wintergatan
+
+# Add your feeds below:
+# Examples :
+# args="$args -u example.com/rss.xml"
+# args="$args -u ${ytfeedu}YTUserName"
+# args="$args -u ${ytfeedc}YTChannelID"
 
 clear
 
