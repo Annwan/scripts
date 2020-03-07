@@ -15,7 +15,12 @@
 
 TEMP_FILE=$(mktemp /tmp/man.XXXXXXXXXXXX.pdf)
 
-PAGE=$(apropos . | dmenu -l 30 | awk '{print $1}')
+if [[ $# -ne 0 ]]; then
+	shift
+	PAGE=$@
+else
+	PAGE=$(apropos . | dmenu -l 30 | awk '{print $1}')
+fi
 
 man -Tps $PAGE | ps2pdf - $TEMP_FILE
 
