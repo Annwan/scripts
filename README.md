@@ -49,4 +49,5 @@ BU | 4 | 12 | Blue
 VT or PP | 5 | 13 | Purple
 AQ | 6 | 14 | Aqua
 WH | 7 | 15 | White
+
 \* : `\e` stands for Escape (0x1B), `\n` stands for Line Feed (0x0A), `\s` stands for Space (0x20)
