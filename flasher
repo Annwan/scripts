@@ -9,8 +9,8 @@
 #######################################################################
 
 while true; do
-	printf '\033[?5h';
+	printf '\x1b[?5h';
 	sleep 0.1;
-	printf '\033[?5l';
+	printf '\x1b[?5l';
 	read -n 1 -t 1 && break;
 done;
