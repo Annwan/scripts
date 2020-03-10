@@ -5,17 +5,28 @@
 # script by: Annwan                                                    #
 ########################################################################
 # Description                                                          #
-# Little script to insert ANSI escape codes into an output             #
+# Little script to insert ANSI escape codes and special chars into an  #
+# output                                                               #
 ########################################################################
 
 while test "$1" != "" ; do
 	case $1 in
+		# 1 Byte hex
+		@X1B)		printf "\x$2"; shift ;;
+		# 3 oct-dig
+		@OCT)		printf "\\$2"; shift ;;
+		# 2 Byte hex
+		@X2B)		printf "\u$2"; shift ;;
+		# 4 Byte hex
+		@X4B)		printf "\U$2"; shift ;;
+		# Tab
+		@TAB)		printf "\011" ;;
 		# Space
-		@SPC)			printf "\\040" ;;
+		@SPC)		printf "\040" ;;
 		# Escape
-		@ESC)			printf "\e" ;;
+		@ESC)		printf "\e" ;;
 		# New Line
-		@LF)			printf "\n" ;;
+		@LF)		printf "\n" ;;
 		# Foreground
 		@FGBK)		printf "\e[38;5;0m" ;;
 		@FGRD)		printf "\e[38;5;1m" ;;
@@ -28,7 +39,7 @@ while test "$1" != "" ; do
 		@FGBBK)		printf "\e[38;5;8m" ;;
 		@FGBRD)		printf "\e[38;5;9m" ;;
 		@FGBGR)		printf "\e[38;5;10m" ;;
-		@FBBYL)		printf "\e[38;5;11m" ;;
+		@FGBYL)		printf "\e[38;5;11m" ;;
 		@FGBBU)		printf "\e[38;5;12m" ;;
 		@FGBVT|FGBPP)	printf "\e[38;5;13m" ;;
 		@FGBAQ)		printf "\e[38;5;14m" ;;
@@ -51,13 +62,13 @@ while test "$1" != "" ; do
 		@BGBAQ)		printf "\e[48;5;14m" ;;
 		@BGBWH)		printf "\e[48;5;15m" ;;
 		# Font
-		@BD)			printf "\e[1m" ;;
-		@NOBD)			printf "\e[22m" ;;
-		@UL)			printf "\e[4m" ;;
-		@NOUL)			printf "\e[24m" ;;
+		@BD)		printf "\e[1m" ;;
+		@NOBD)		printf "\e[22m" ;;
+		@UL)		printf "\e[4m" ;;
+		@NOUL)		printf "\e[24m" ;;
 		# Reset
-		@RESET)			printf "\e[0m" ;;
-		*)			printf $1 ;;
+		@RESET)		printf "\e[0m" ;;
+		*)		printf "$1" ;;
 	esac;
 	shift;
 done;
