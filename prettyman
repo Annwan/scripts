@@ -12,10 +12,13 @@
 # as pdf, to make them more readable, and to allow to print them.    #
 ######################################################################
 
-TEMP_FILE=$(mktemp /tmp/man.XXXXXXXXXXXX.pdf)
 
-man -Tps $1 $2 | ps2pdf - $TEMP_FILE
+if [ -z $1 ]; then
+	echo "Please specify the manual page you wish to see";
+else
+	TEMP_FILE=$(mktemp /tmp/man.XXXXXXXXXXXX.pdf);
+	man -Tps $@ | ps2pdf - $TEMP_FILE;
+	zathura $TEMP_FILE;
+	rm -r -f $TEMP_FILE;
+fi
 
-zathura $TEMP_FILE
-
-rm -r -f $TEMP_FILE
