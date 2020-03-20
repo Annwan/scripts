@@ -5,7 +5,6 @@
 # Script by: Annwan                                                  #
 ######################################################################
 # Dependencies:                                                      #
-#  - dmenu                                                           #
 #  - zathura                                                         #
 ######################################################################
 # Description:                                                       #
@@ -15,13 +14,7 @@
 
 TEMP_FILE=$(mktemp /tmp/man.XXXXXXXXXXXX.pdf)
 
-if [[ $# -ne 0 ]]; then
-	PAGE=$@
-else
-	PAGE=$(apropos . | dmenu -l 30 | awk '{print $1}')
-fi
-
-man -Tps $PAGE | ps2pdf - $TEMP_FILE
+man -Tps $1 $2 | ps2pdf - $TEMP_FILE
 
 zathura $TEMP_FILE
 
