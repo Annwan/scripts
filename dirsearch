@@ -11,9 +11,9 @@
 # dirsearch <directory> <pattern>                                    #
 ######################################################################
 
-DIR=$1
+DIR=$1*
 QUERY=$2
-for FILE in $(/bin/ls -pL "$DIR"*)
+for FILE in $DIR;
 do
     echo "$FILE"
     echo "$(/bin/grep "$QUERY" "$FILE")"
