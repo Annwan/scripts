@@ -16,7 +16,7 @@
 if [ -z $1 ]; then
 	echo "Please specify the manual page you wish to see";
 else
-	TEMP_FILE=$(mktemp /tmp/man.XXXXXXXXXXXX.pdf);
+	TEMP_FILE=$(mktemp);
 	man -Tps $@ | ps2pdf - $TEMP_FILE;
 	zathura $TEMP_FILE;
 	rm -r -f $TEMP_FILE;
