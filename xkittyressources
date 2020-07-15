@@ -1,0 +1,37 @@
+#!/bin/sh
+
+########################################################################
+# xkittyressources                                                     #
+# script by: Annwan                                                    #
+########################################################################
+# Dependencies                                                         #
+#  - kitty                                                             #
+########################################################################
+# xkittyressources is a script that updates your kitty terminal        #
+# configuration to match the one in your ~/.Xressources file.          #
+# It curently only support color information, but font support is WIP. #
+########################################################################
+
+kittyconfig=$HOME/.config/kitty/kitty.conf
+xres=$HOME/.Xressources
+
+# checking if both kitty configuration and .Xressources exist
+[ ! -f $kittyconfig ] && echo no kitty configuration && exit 1;
+[ ! -f $xres ] && echo no .Xressources && exit 2;
+# checking if kitty.conf tels us to read .Xressources
+#[ -z $(grep "#--readxressources--" $kittyconfig) ] && echo nothing to do && exit 3;
+# reading Xressources
+newkittyconf=$(grep -e color -e background -e foreground $xres | 
+    while IFS=: read name value;
+    do
+        printf "%s\t%s\n" $(printf "%s" $name | tail -c+2) $value
+    done
+)
+# Removing the comment from kitty conf
+kittyconfbfcomment=$(head -n $(let a=$(grep -n "#--readxressources--" $kittyconfig | cut -d: -f1)-1; echo $a) $kittyconfig)
+kittyconfafcomment=$(tail -n+$(let a=$(grep -n "#--readxressources--" $kittyconfig | cut -d: -f1)+1; echo $a) $kittyconfig)
+newkittyconf=$(printf "%s\n%s\n%s\n" "$kittyconfbfcomment" "$newkittyconf" "$kittyconfafcomment")
+
+echo $newkittyconf > $kittyconfig
+
+exit 0;
