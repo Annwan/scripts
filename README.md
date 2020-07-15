@@ -51,3 +51,13 @@ AQ | 6 | 14 | Aqua
 WH | 7 | 15 | White
 
 \* : `\e` stands for Escape (0x1B), `\n` stands for Line Feed (0x0A), `\s` stands for Space (0x20)
+
+## `xkittyressources`
+
+Updates the kitty terminal configuration if a line containing 
+```
+#--readxressources--
+```
+is found in the configuration
+
+The line containing the tag is removed and replace with color settings extracted from the user's `.Xressources` file
