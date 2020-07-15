@@ -32,6 +32,6 @@ kittyconfbfcomment=$(head -n $(let a=$(grep -n "#--readxressources--" $kittyconf
 kittyconfafcomment=$(tail -n+$(let a=$(grep -n "#--readxressources--" $kittyconfig | cut -d: -f1)+1; echo $a) $kittyconfig)
 newkittyconf=$(printf "%s\n%s\n%s\n" "$kittyconfbfcomment" "$newkittyconf" "$kittyconfafcomment")
 
-echo $newkittyconf > $kittyconfig
+echo "$newkittyconf" > $kittyconfig
 
 exit 0;
