@@ -18,7 +18,7 @@ xres=$HOME/.Xressources
 [ ! -f $kittyconfig ] && echo no kitty configuration && exit 1;
 [ ! -f $xres ] && echo no .Xressources && exit 2;
 # checking if kitty.conf tels us to read .Xressources
-#[ -z $(grep "#--readxressources--" $kittyconfig) ] && echo nothing to do && exit 3;
+[ -z $(grep "#--readxressources--" $kittyconfig) ] && echo nothing to do && exit 3;
 # reading Xressources
 newkittyconf=$(grep -e color -e background -e foreground $xres | 
     while IFS=: read name value;
