@@ -9,7 +9,6 @@
 ########################################################################
 # xkittyressources is a script that updates your kitty terminal        #
 # configuration to match the one in your ~/.Xressources file.          #
-# It curently only support color information, but font support is WIP. #
 ########################################################################
 
 kittyconfig=$HOME/.config/kitty/kitty.conf
