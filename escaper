@@ -33,7 +33,7 @@ while test "$1" != "" ; do
 		@FGGR)		printf "\e[38;5;2m" ;;
 		@FGYL)		printf "\e[38;5;3m" ;;
 		@FGBU)		printf "\e[38;5;4m" ;;
-		@FGVT|FGPP)	printf "\e[38;5;5m" ;;
+		@FGVT|@FGPP)	printf "\e[38;5;5m" ;;
 		@FGAQ)		printf "\e[38;5;6m" ;;
 		@FGWH)		printf "\e[38;5;7m" ;;
 		@FGBBK)		printf "\e[38;5;8m" ;;
@@ -41,7 +41,7 @@ while test "$1" != "" ; do
 		@FGBGR)		printf "\e[38;5;10m" ;;
 		@FGBYL)		printf "\e[38;5;11m" ;;
 		@FGBBU)		printf "\e[38;5;12m" ;;
-		@FGBVT|FGBPP)	printf "\e[38;5;13m" ;;
+		@FGBVT|@FGBPP)	printf "\e[38;5;13m" ;;
 		@FGBAQ)		printf "\e[38;5;14m" ;;
 		@FGBWH)		printf "\e[38;5;15m" ;;
 		# Background
@@ -50,7 +50,7 @@ while test "$1" != "" ; do
 		@BGGR)		printf "\e[48;5;2m" ;;
 		@BGYL)		printf "\e[48;5;3m" ;;
 		@BGBU)		printf "\e[48;5;4m" ;;
-		@BGVT|BGPP)	printf "\e[48;5;5m" ;;
+		@BGVT|@BGPP)	printf "\e[48;5;5m" ;;
 		@BGAQ)		printf "\e[48;5;6m" ;;
 		@BGWH)		printf "\e[48;5;7m" ;;
 		@BGBBK)		printf "\e[48;5;8m" ;;
@@ -58,7 +58,7 @@ while test "$1" != "" ; do
 		@BGBGR)		printf "\e[48;5;10m" ;;
 		@BGBYL)		printf "\e[48;5;11m" ;;
 		@BGBBU)		printf "\e[48;5;12m" ;;
-		@BGBVT|BGBPP)	printf "\e[48;5;13m" ;;
+		@BGBVT|@BGBPP)	printf "\e[48;5;13m" ;;
 		@BGBAQ)		printf "\e[48;5;14m" ;;
 		@BGBWH)		printf "\e[48;5;15m" ;;
 		# Font
