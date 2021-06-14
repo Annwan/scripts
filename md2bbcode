@@ -1,0 +1,83 @@
+#!/usr/bin/env moon
+
+-------------------------------------------------------------------------------
+-- md2bbcode
+-- Converts markdown into BBCode
+-------------------------------------------------------------------------------
+-- Main usage: 
+-- convert my Markdown worldbuilding notes to the format used by World Anvil
+-------------------------------------------------------------------------------
+-- Dependancies
+-- Moonscript, lunamark
+-------------------------------------------------------------------------------
+-- Usage
+-- md2bbcode
+-- Markdown goes in stdin
+-- BBCode come from stdout
+-------------------------------------------------------------------------------
+
+import writer, reader from require "lunamark"
+
+ap = (v) => @[#@ + 1] = v
+
+BBCode = writer.generic.new!
+
+BBCode.linebreak = "\n"
+BBCode.hrule = "[hr]"
+BBCode.ellipsis = "…"
+BBCode.mdash = "—"
+BBCode.ndash = "–"
+
+BBCode.singlequoted = (s) ->
+	{ "‘", s, "’" }
+
+BBCode.doublequoted = (s) ->
+	{ "“", s, "”" }
+
+BBCode.link = (label, uri, title) ->
+	{ "@", label, "(", uri, ")" }
+
+
+BBCode.bulletlist = (items, tight) ->
+	s = { "[ul]" }
+	ap s, "\n" unless tight
+	for i in *items
+		ap s, "[li]"
+		ap s, i
+		ap s, "[/li]"
+		ap s, "\n" unless tight
+	ap s, "[/ul]"
+	ap s, "\n" unless tight
+	s
+
+BBCode.orderedlist = (items, tight, _) ->
+	s = { "[ol]" }
+	ap s, "\n" unless tight
+	for i in *items
+		ap s, "[li]"
+		ap s, i
+		ap s, "[/li]"
+		ap s, "\n" unless tight
+	ap s, "[/ol]"
+	ap s, "\n" unless tight
+	s
+
+BBCode.image = (label, _, _) -> { label }
+
+BBCode.blockquote = (s) -> { "[quote]", s, "[/quote]" }
+
+BBCode.paragraph = (s) -> { "[p]", s, "[/p]"}
+
+BBCode.header = (s, l) -> { "[h#{l}]", s, "[/h#{l}]" }
+
+BBCode.strong = (s) -> { "[b]", s, "[/b]" }
+
+BBCode.emphasis = (s) -> { "[i]", s, "[/i]" }
+
+md = io.read "*a"
+
+parse = reader.markdown.new BBCode, { smart: true }
+
+result, meta = parse md
+
+io.write result
